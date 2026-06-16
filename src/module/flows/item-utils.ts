@@ -84,7 +84,7 @@ export async function checkItemLimited(
     // The frame is not limited, so we're good.
     return true;
   }
-  let cost: 1;
+  let cost = 1;
   if (state.data.action) cost = state.data.action.cost ?? 1;
   else if (state.item.system.cost) cost = state.item.system.cost;
   if (state.item.isLimited() && state.item.system.uses.value < cost) {
@@ -171,7 +171,7 @@ export async function updateItemAfterAction(
     let itemChanges: DeepPartial<SourceData.MechWeapon | SourceData.NpcFeature | SourceData.PilotWeapon> = {};
     if (state.item.isLoading()) itemChanges.loaded = false;
     if (state.item.isLimited()) {
-      let cost: 1;
+      let cost = 1;
       if (state.data.action) cost = state.data.action.cost ?? 1;
       else if (state.item.system.cost) cost = state.item.system.cost;
       itemChanges.uses = { value: Math.max(state.item.system.uses.value - cost, 0) };

@@ -113,6 +113,7 @@ export namespace LancerFlowState {
 
     attack_type: AttackType; // Melee, Ranged, Quick Tech, Full Tech
     action: ActionData | null;
+    cost: number;
     effect?: string;
     on_attack?: string;
     on_hit?: string;
@@ -199,6 +200,7 @@ export namespace LancerFlowState {
     acc: number;
     action_path: string;
     action: ActionData | null;
+    cost: number;
     self_heat?: string; // The self heat roll string if present
     self_heat_result?: SelfHeatResult;
     detail: string;
@@ -277,6 +279,7 @@ export namespace LancerFlowState {
     title: string;
     type: SystemType.System | SystemType.Mod | NpcFeatureType | null;
     effect: string;
+    cost: number;
 
     tags?: Tag[];
     self_heat?: string; // The self heat roll string if present

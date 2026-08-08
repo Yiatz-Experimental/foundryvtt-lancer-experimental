@@ -76,7 +76,7 @@ async function initBurnCheckData(state: FlowState<LancerFlowState.BurnCheckData>
 
 async function rollBurnCheck(state: FlowState<LancerFlowState.BurnCheckData>): Promise<boolean> {
   if (!state.data) throw new TypeError(`Burn flow state missing!`);
-  const rollFlow = new StatRollFlow(state.actor, { title: "BURN :: ENG", path: "system.eng" });
+  const rollFlow = new StatRollFlow(state.actor, { type: "burn", title: "BURN :: ENG", path: "system.eng" });
   const success = await rollFlow.begin();
   state.data.check_total = rollFlow.state.data?.result?.roll.total;
   if (game.dice3d) {

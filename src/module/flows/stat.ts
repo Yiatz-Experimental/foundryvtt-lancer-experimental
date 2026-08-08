@@ -24,7 +24,7 @@ export class StatRollFlow extends Flow<LancerFlowState.StatRollData> {
 
   constructor(uuid: UUIDRef | LancerItem | LancerActor, data: Partial<LancerFlowState.StatRollData>) {
     const state: LancerFlowState.StatRollData = {
-      type: "stat",
+      type: data?.type ?? "stat",
       title: data?.title ?? "",
       path: data?.path ?? "system.hull", // We need to pick some kind of default
       bonus: data?.bonus ?? 0,
@@ -72,7 +72,7 @@ async function initStatRollData(
 async function showStatRollHUD(state: FlowState<LancerFlowState.StatRollData>): Promise<boolean> {
   if (!state.data) throw new TypeError(`Stat roll flow state missing!`);
   try {
-    state.data.acc_diff = await openSlidingHud("hase", state.data.acc_diff!);
+    state.data.acc_diff = await openSlidingHud("hase-" + state.type, state.data.acc_diff!);
   } catch (_e) {
     // User hit cancel, abort the flow
     return false;

@@ -9,7 +9,9 @@ let hud: ReturnType<typeof mount>;
 // Look - I don't really know enough typescript to get it right,
 // but these will hold the success/reject of any
 let activeCallbacks: Record<keyof HUDData, null | [(value: any) => any, () => any]> = {
-  hase: null,
+  stat: null,
+  burn: null,
+  infect: null,
   attack: null,
   damage: null,
   struct: null,
@@ -20,7 +22,7 @@ export async function attach() {
   if (!hud) {
     let HUDZone = (await import("./SlidingHUDZone.svelte")).default;
     const events: Record<string, (e: any) => any> = {};
-    for (const key of ["attack", "damage", "hase", "struct", "stress"] as Array<keyof HUDData>) {
+    for (const key of ["attack", "damage", "stat", "burn", "infect", "struct", "stress"] as Array<keyof HUDData>) {
       events[`${key}.submit`] = (ev: any) => {
         activeCallbacks[key]?.[0](ev.detail);
         activeCallbacks[key] = null;
@@ -61,7 +63,9 @@ export async function fade(dir: "out" | "in" = "out") {
 }
 
 type HUDData = {
-  hase: AccDiffHudData;
+  stat: AccDiffHudData;
+  burn: AccDiffHudData;
+  infect: AccDiffHudData;
   attack: AccDiffHudData;
   damage: DamageHudData;
   struct: StructStressData;

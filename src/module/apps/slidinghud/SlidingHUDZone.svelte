@@ -20,7 +20,9 @@
   let dispatch = createEventDispatcher();
 
   let dialogs: { [key: string]: typeof SvelteComponent } = $state({
-    hase: AccDiffHud,
+    stat: AccDiffHud,
+    burn: AccDiffHud,
+    infect: AccDiffHud,
     attack: AccDiffHud,
     damage: DamageHud,
     struct: StructStressHud,
@@ -34,7 +36,9 @@
       data?: any;
     };
   } = $state({
-    hase: { open: null },
+    stat: { open: null },
+    burn: { open: null },
+    infect: { open: null },
     attack: { open: null },
     damage: { open: null },
     struct: { open: null },

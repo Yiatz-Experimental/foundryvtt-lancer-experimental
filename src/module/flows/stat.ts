@@ -72,7 +72,7 @@ async function initStatRollData(
 async function showStatRollHUD(state: FlowState<LancerFlowState.StatRollData>): Promise<boolean> {
   if (!state.data) throw new TypeError(`Stat roll flow state missing!`);
   try {
-    state.data.acc_diff = await openSlidingHud("hase-" + state.data.type, state.data.acc_diff!);
+    state.data.acc_diff = await openSlidingHud(state.data.type, state.data.acc_diff!);
   } catch (_e) {
     // User hit cancel, abort the flow
     return false;

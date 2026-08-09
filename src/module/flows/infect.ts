@@ -76,7 +76,7 @@ async function initInfectCheckData(state: FlowState<LancerFlowState.InfectCheckD
 
 async function rollInfectCheck(state: FlowState<LancerFlowState.InfectCheckData>): Promise<boolean> {
   if (!state.data) throw new TypeError(`Infect flow state missing!`);
-  const rollFlow = new StatRollFlow(state.actor, { type: "infect" title: "INFECT :: SYS", path: "system.sys" });
+  const rollFlow = new StatRollFlow(state.actor, { type: "infect", title: "INFECT :: SYS", path: "system.sys" });
   const success = await rollFlow.begin();
   state.data.check_total = rollFlow.state.data?.result?.roll.total;
   if (game.dice3d) {
